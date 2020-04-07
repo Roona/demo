@@ -10,10 +10,10 @@ agent any
 		stage('Push'){
 			steps{
 					echo "Build"
-					echo "$PATH"
+					echo "PATH -$env.PATH"
 					echo "BUILD_NUMBER -$env.BUILD_NUMBER"
 					echo "BUILD_ID -$env.BUILD_ID"
-					echo "JOB_NAME -$ENV.JOB_NAME"
+					echo "JOB_NAME -$env.JOB_NAME"
 				}
 			
 		}
