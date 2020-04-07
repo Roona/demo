@@ -8,7 +8,7 @@ environment{
 	stages{
 		stage('Build'){
 			steps{
-				bat "mvn test"
+				bat "mvn compile com.google.cloud.tools:jib-maven-plugin:2.1.0:dockerBuild -Dimage=roona/demo"
 				echo "build"
 			}
 		}
@@ -23,7 +23,7 @@ environment{
 				}
 			
 		}
-		stage('Test'){
+		stage('compile com.google.cloud.tools:jib-maven-plugin:2.1.0:dockerBuild'){
 			steps{
 					bat "mvn clean compile"
 			
