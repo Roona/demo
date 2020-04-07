@@ -6,6 +6,14 @@ environment{
 		PATH="$dockerHome/bin:$mavenHome/bin:$PATH"
 	}
 	stages{
+	
+		stage('Package'){
+			steps{
+					bat "mvn clean install"
+			
+					echo "test"
+			}
+		}
 		stage('Build'){
 			steps{
 				bat "mvn compile com.google.cloud.tools:jib-maven-plugin:2.1.0:dockerBuild -Dimage=roona/demo"
@@ -20,16 +28,11 @@ environment{
 					echo "BUILD_NUMBER -$env.BUILD_NUMBER"
 					echo "BUILD_ID -$env.BUILD_ID"
 					echo "JOB_NAME -$env.JOB_NAME"
+					bat "mvn compile com.google.cloud.tools:jib-maven-plugin:2.1.0:build -Dimage=roona/demo"
 				}
 			
 		}
-		stage('compile com.google.cloud.tools:jib-maven-plugin:2.1.0:dockerBuild'){
-			steps{
-					bat "mvn clean compile"
-			
-					echo "test"
-			}
-		}
+		
 
 	}
 }
