@@ -2,13 +2,13 @@ pipleline{
 agent {docker{image 'maven:3.6.3'}}
 	stages{
 		stage('Build'){
-			echo "mvn --version"
+			echo "build"
 		}
 		stage('Push'){
-			echo "mvn --version"
+			sh cho "mvn --version"
 		}
 		stage('Test'){
-			echo "mvn --version"
+			echo "test"
 		}
 
 	}
