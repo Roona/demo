@@ -8,14 +8,13 @@ environment{
 	stages{
 		stage('Build'){
 			steps{
-		
+				sh "mvn test"
 				echo "build"
 			}
 		}
 		stage('Push'){
 			steps{
 					sh "mvn --version"
-					sh "docker version"
 					echo "Build"
 					echo "PATH -$env.PATH"
 					echo "BUILD_NUMBER -$env.BUILD_NUMBER"
@@ -26,7 +25,7 @@ environment{
 		}
 		stage('Test'){
 			steps{
-			
+					sh "mvn clean compile"
 			
 					echo "test"
 			}
