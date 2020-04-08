@@ -25,7 +25,7 @@ environment{
 		stage('Push Docker Image'){
 			steps{
 					script{
-							docker.withRegistry('','dockehub'){
+							docker.withRegistry('','dockerhub'){
 							dockerImage.push();
 							dockerImage.push('latest');
 							}
