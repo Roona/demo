@@ -19,7 +19,7 @@ pipeline{
 				}
 			}
 			
-			stage('Package'){
+			stage('deploy to GKE'){
 				steps{
 						 step([
 								$class: 'KubernetesEngineBuilder',
