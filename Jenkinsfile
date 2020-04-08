@@ -1,39 +1,37 @@
 pipeline{
-agent any
-environment{
-		dockerHome=tool 'myDocker'
-		mavenHome=tool 'M3'
-		PATH="$dockerHome/bin:$mavenHome/bin:$PATH"
-	}
-	stages{
-	
-		stage('Package'){
-			steps{
-					bat "mvn clean install"
-			
-					echo "test"
-			}
+	agent any
+	environment{
+			dockerHome=tool 'myDocker'
+			mavenHome=tool 'M3'
+			PATH="$dockerHome/bin:$mavenHome/bin:$PATH"
+			PROJECT_ID = 'RPSITA'
+			CLUSTER_NAME = 'cluster-1'
+			LOCATION = 'us-central1-c'
+			CREDENTIALS_ID = 'RPSITA'
 		}
-		stage('Build Docker Image'){
-			steps{
-				script{
-				dockerImage=docker.build("roona/demo:${env.BUILD_TAG}")
-				}
+		stages{
+		
+			stage('Package'){
+				steps{
+						bat "mvn clean install"
 				
-			}
-		}
-		stage('Push Docker Image'){
-			steps{
-					script{
-							docker.withRegistry('','dockerhub'){
-							dockerImage.push();
-							dockerImage.push('latest');
-							}
-					}
+						echo "test"
 				}
 			}
-		
-		
+			
+			stage('Package'){
+				steps{
+						 step([
+								$class: 'KubernetesEngineBuilder',
+								projectId: env.PROJECT_ID,
+								clusterName: env.CLUSTER_NAME,
+								location: env.LOCATION,
+								manifestPattern: 'deployment.yaml',
+								credentialsId: env.CREDENTIALS_ID,
+								verifyDeployments: true])
+				}
+			}
+				
 
-	}
+		}
 }
