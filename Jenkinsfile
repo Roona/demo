@@ -16,6 +16,7 @@ pipeline{
 			stage('deploy to GKE'){
 				steps{
 						 step([
+								echo "PATH -$env.PROJECT_ID"
 								$class: 'KubernetesEngineBuilder',
 								projectId: env.PROJECT_ID,
 								clusterName: env.CLUSTER_NAME,
