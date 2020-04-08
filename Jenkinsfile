@@ -11,13 +11,7 @@ pipeline{
 		}
 		stages{
 		
-			stage('Package'){
-				steps{
-						bat "mvn clean install"
-				
-						echo "test"
-				}
-			}
+			
 			
 			stage('deploy to GKE'){
 				steps{
