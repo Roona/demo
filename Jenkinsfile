@@ -16,6 +16,7 @@ pipeline{
 			stage('deploy to GKE'){
 				steps{
 				echo "PROJECT_ID -$env.PROJECT_ID"
+				 container('kubectl') {
 						 step([
 								
 								$class: 'KubernetesEngineBuilder',
@@ -25,6 +26,8 @@ pipeline{
 								manifestPattern: 'deployment.yaml',
 								credentialsId: env.CREDENTIALS_ID,
 								verifyDeployments: true])
+							
+					}
 				}
 			}
 				
