@@ -1,5 +1,9 @@
 pipeline{
-	agent any
+	agent {
+	 kubernetes {
+	 defaultContainer 'jnlp'
+	 }
+	 }
 	environment{
 			dockerHome=tool 'myDocker'
 			mavenHome=tool 'M3'
