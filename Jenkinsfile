@@ -15,7 +15,9 @@ pipeline{
 			stage('test'){
 				steps{
 					container('jnlp') {
-						  sh("kubectl get pods")
+						   sh """
+							   kubectl get pods
+							"""
 					}
 				}
 			}
