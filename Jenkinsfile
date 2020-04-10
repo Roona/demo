@@ -3,8 +3,8 @@ pipeline{
 	environment{
 			
 			PROJECT_ID = 'RPSITA'
-			CLUSTER_NAME = 'cluster-1'
-			LOCATION = 'us-central1-c'
+			CLUSTER_NAME = 'jenkins-cd'
+			LOCATION = 'us-east1-d'
 			CREDENTIALS_ID = 'RPSITA'
 		}
 		stages{
