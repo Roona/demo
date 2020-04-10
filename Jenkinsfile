@@ -1,5 +1,7 @@
 pipeline{
-	agent ANY
+	agent {
+		kubernetes{}
+	}
 	environment{
 			
 			PROJECT_ID = 'RPSITA'
