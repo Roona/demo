@@ -43,32 +43,17 @@ spec:
 		stages{
 		
 			
-			stage('test'){
+			stage('deploy to GKE'){
 				steps{
 					container('kubectl') {
 						   sh """
 							   kubectl get pods
+							   kubectl get deployments
 							"""
 					}
 				}
 			}
-			stage('deploy to GKE'){
-				steps{
-				
-				
-						 step([
-								
-								$class: 'KubernetesEngineBuilder',
-								projectId: env.PROJECT_ID,
-								clusterName: env.CLUSTER_NAME,
-								location: env.LOCATION,
-								manifestPattern: 'deployment.yaml',
-								credentialsId: env.CREDENTIALS_ID,
-								verifyDeployments: true])
-							
-					}
-				
-			}
+			
 				
 
 		}
