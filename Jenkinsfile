@@ -38,7 +38,7 @@ spec:
 					container('kubectl') {
 						   sh """
 							   kubectl get pods
-							   kubectl get deployments
+							   
 							"""
 					}
 				}
