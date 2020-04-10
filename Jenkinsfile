@@ -1,13 +1,7 @@
 pipeline{
-	agent {
-	 kubernetes {
-	 defaultContainer 'jnlp'
-	 }
-	 }
+	agent ANY
 	environment{
-			dockerHome=tool 'myDocker'
-			mavenHome=tool 'M3'
-			PATH="$dockerHome/bin:$mavenHome/bin:$PATH"
+			
 			PROJECT_ID = 'RPSITA'
 			CLUSTER_NAME = 'cluster-1'
 			LOCATION = 'us-central1-c'
@@ -19,8 +13,8 @@ pipeline{
 			
 			stage('deploy to GKE'){
 				steps{
-				echo "PROJECT_ID -$env.PROJECT_ID"
-				 container('kubectl') {
+				
+				
 						 step([
 								
 								$class: 'KubernetesEngineBuilder',
@@ -32,7 +26,7 @@ pipeline{
 								verifyDeployments: true])
 							
 					}
-				}
+				
 			}
 				
 
