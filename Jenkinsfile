@@ -37,7 +37,7 @@ spec:
 				steps{
 					container('kubectl') {
 						   sh """
-							   kubectl get pods
+							  kubectl create deployment kuberete --image=roona/kubernete:latest
 							   
 							"""
 					}
