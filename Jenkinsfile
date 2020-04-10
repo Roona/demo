@@ -12,7 +12,13 @@ pipeline{
 		stages{
 		
 			
-			
+			stage('test'){
+				steps{
+					container('kubectl') {
+						  sh("kubectl get pods")
+					}
+				}
+			}
 			stage('deploy to GKE'){
 				steps{
 				
