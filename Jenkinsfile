@@ -38,6 +38,8 @@ spec:
 					container('kubectl') {
 						   sh """
 							  kubectl create deployment kuberete --image=roona/kubernete:latest
+							  kubectl expose deployment kuberete --type=LoadBalancer --port=8080
+							  kubectl get deployments
 							   
 							"""
 					}
